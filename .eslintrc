@@ -7,7 +7,7 @@
         "prettier"
     ],
     "rules": {
-        "no-console": "error",
+        "no-console": "off",
         "prettier/prettier": [
             "error",
             {

@@ -1,12 +1,22 @@
 {
-    "compilerOptions": {
-      "baseUrl": ".",
-      "paths": {
-        "@components/*": ["src/components/*"],
-        "@config/*": ["src/config/*"],
-        "@styles/*": ["src/styles/*"],
-        "@utils/*": ["src/utils/*"],
-        "@App": ["src/App"]
-      }
+  "compilerOptions": {
+    "baseUrl": ".",
+    "paths": {
+      "@components/*": [
+        "src/App/components/*"
+      ],
+      "@config/*": [
+        "src/config/*"
+      ],
+      "@styles/*": [
+        "src/styles/*"
+      ],
+      "@utils/*": [
+        "src/utils/*"
+      ],
+      "@App": [
+        "src/App/App"
+      ]
     }
   }
+}
