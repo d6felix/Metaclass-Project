@@ -5,7 +5,9 @@ import "./Header.css";
 export const Header = () => (
   <header>
     <h1 className="storeName">Fake store</h1>
-    <Link to="/">Все товары</Link>
+    <Link className="allProducts" to="/">
+      Все товары
+    </Link>
   </header>
 );
 
