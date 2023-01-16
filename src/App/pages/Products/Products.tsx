@@ -4,6 +4,8 @@ import { Item } from "@components/Item/Item";
 import axios from "axios";
 import { Link } from "react-router-dom";
 
+import "./Products.css";
+
 export const Products = () => {
   const [itemsData, setItemsData] = useState([]);
 
@@ -17,13 +19,12 @@ export const Products = () => {
   }, []);
 
   return (
-    <div>
+    <div className="container">
       {itemsData.map((item: Item) => {
         return (
-          <div key={item.id}>
-            <Link to={`/product/${item.id}`}>
-              {item.title} {item.price}
-            </Link>
+          <div className="item" key={item.id}>
+            <Link to={`/product/${item.id}`}>{item.title}</Link>
+            <p className="price">{item.price} $</p>
           </div>
         );
       })}

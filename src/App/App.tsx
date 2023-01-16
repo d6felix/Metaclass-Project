@@ -9,7 +9,6 @@ import Products from "./pages/Products";
 export const App = () => {
   return (
     <div>
-      Test text App;
       <BrowserRouter>
         <Header />
         <Routes>
