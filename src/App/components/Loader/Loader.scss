@@ -1,0 +1,26 @@
+.loader {
+    border: solid #518581;
+    border-bottom-color: transparent;
+    border-radius: 50%;
+    display: block;
+    box-sizing: border-box;
+    rotate: -55deg;
+
+    &.loader_size_l {
+        border-width: 6px;
+        width: 57px;
+        height: 57px;
+    }
+
+    &.loader_size_m {
+        border-width: 4.5px;
+        width: 31px;
+        height: 31px;
+    }
+
+    &.loader_size_s {
+        border-width: 3px;
+        width: 14px;
+        height: 14px;
+    }
+}

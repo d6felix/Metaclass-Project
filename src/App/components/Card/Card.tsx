@@ -1,4 +1,7 @@
-type CardProps = {
+import classNames from "classnames";
+import "./Card.scss";
+
+export type CardProps = {
   /** URL изображения */
   image: string;
   /** Заголовок карточки */
@@ -19,11 +22,13 @@ export const Card: React.FC<CardProps> = ({
   onClick,
 }) => {
   return (
-    <div onClick={onClick}>
-      <img src={image} alt="" />
-      <div>{title}</div>
-      <div>{subtitle}</div>
-      {content !== null && content}
+    <div onClick={onClick} className={classNames("card")}>
+      <img className={classNames("card__image")} src={image} alt="card" />
+      <div className={classNames("card__title-container")}>
+        <div className={classNames("card__title")}>{title}</div>
+        <div className={classNames("card__subtitle")}>{subtitle}</div>
+        {content !== null && content}
+      </div>
     </div>
   );
 };

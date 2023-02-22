@@ -1,0 +1,22 @@
+.input {
+    width: 300px;
+    background-color: #FFFFFF;
+    font-family: 'Eudoxus Sans';
+    font-style: normal;
+    font-weight: 500;
+    font-size: 18px;
+    line-height: 180%;
+    color: #AFADB5;
+    padding-left: 28px;
+    padding-top: 26px;
+    padding-bottom: 26px;
+    box-shadow: 0px 4px 120px 0px rgba(175, 173, 181, 0.15);
+    border: 0px;
+    border-radius: 0%;
+
+    &:focus {
+        border: 1px solid #518581;
+        border-radius: 0%;
+        outline: none;
+    }
+}

@@ -1,6 +1,7 @@
 import React from "react";
 
 import classNames from "classnames";
+import "./MultiDropdown.scss";
 
 /** Вариант для выбора в фильтре */
 export type Option = {
@@ -26,7 +27,7 @@ export type MultiDropdownProps = {
 
 export const MultiDropdown: React.FC<MultiDropdownProps> = ({
   options,
-  value,
+  value = [],
   onChange,
   disabled = false,
   pluralizeOptions,
@@ -35,11 +36,17 @@ export const MultiDropdown: React.FC<MultiDropdownProps> = ({
   let listOfOptions = options.map((item) => {
     return (
       <li
+        className={classNames(
+          "multi-dropdown__item",
+          value.findIndex((elem) => elem.key === item.key) !== -1
+            ? "multi-dropdown__item_selected"
+            : ""
+        )}
         key={item.key}
         onClick={() => {
-          let newValue: Option[];
-          if (value.includes(item)) {
-            newValue = value.filter((a) => !(a.value === item.value));
+          let newValue: Option[] = value;
+          if (value.findIndex((elem) => elem.key === item.key) !== -1) {
+            newValue = value.filter((a) => !(a.key === item.key));
           } else {
             newValue = value.concat([item]);
           }
@@ -50,21 +57,26 @@ export const MultiDropdown: React.FC<MultiDropdownProps> = ({
       </li>
     );
   });
-  let pluralizedOPtions = pluralizeOptions(value);
+
   const [visible, setVisible] = React.useState(false);
+
   return (
     <>
       <button
         {...props}
-        className={classNames("dropdown")}
+        className={classNames("multi-dropdown")}
         disabled={disabled}
         onClick={() => {
           setVisible(!visible);
         }}
       >
-        {pluralizedOPtions}
+        <p>{pluralizeOptions(value)}</p>
       </button>
-      {!disabled && visible && <ul>{listOfOptions}</ul>}
+      {!disabled && visible && (
+        <ul className={classNames("multi-dropdown__itembox")}>
+          {listOfOptions}
+        </ul>
+      )}
     </>
   );
 };

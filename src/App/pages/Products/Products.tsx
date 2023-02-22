@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 
+import { Card } from "@components/Card/Card";
 import { Item } from "@components/Item/Item";
 import axios from "axios";
 import { Link } from "react-router-dom";
@@ -7,7 +8,7 @@ import { Link } from "react-router-dom";
 import "./Products.css";
 
 export const Products = () => {
-  const [itemsData, setItemsData] = useState([]);
+  const [itemsData, setItemsData] = useState<Item[]>([]);
 
   useEffect(() => {
     const fetch = async () => {
@@ -24,10 +25,9 @@ export const Products = () => {
         return (
           <div className="item" key={item.id}>
             <Link to={`/product/${item.id}`}>
-              <img className="image" src={item.image} alt=""></img>
-              <p>{item.title}</p>
+              <Card image={item.image} title={item.title} subtitle={""} />
             </Link>
-            <p className="price">{item.price} $</p>
+            <div className="price">{item.price} $</div>
           </div>
         );
       })}

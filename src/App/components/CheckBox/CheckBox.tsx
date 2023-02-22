@@ -1,5 +1,9 @@
-/** Пропсы, которые принимает компонент CheckBox */
-type CheckBoxProps = Omit<
+import { useState } from "react";
+
+import classNames from "classnames";
+import "./CheckBox.scss";
+
+export type CheckBoxProps = Omit<
   React.InputHTMLAttributes<HTMLInputElement>,
   "onChange"
 > & {
@@ -10,17 +14,34 @@ type CheckBoxProps = Omit<
 export const CheckBox: React.FC<CheckBoxProps> = ({
   onChange,
   disabled,
-  checked,
+  checked = false,
   ...props
 }) => {
+  let setChecked: React.Dispatch<React.SetStateAction<boolean>>;
+  [checked, setChecked] = useState(checked);
+
   return (
-    <input
-      {...props}
-      checked={checked}
-      disabled={disabled}
-      type="checkbox"
-      onChange={(e) => onChange(e.target.checked)}
-    />
+    <label className={classNames("checkbox-container")}>
+      <input
+        {...props}
+        checked={checked}
+        disabled={disabled}
+        type="checkbox"
+        onChange={(e) => {
+          onChange(e.target.checked);
+          setChecked(e.target.checked);
+        }}
+        className={classNames("checkbox-container__checkbox-original_hidden", {
+          "checkbox-container__checkbox-original_hidden_disabled": disabled,
+        })}
+      />
+      <div
+        className={classNames(
+          "checkbox-container__checkbox-custom",
+          "checkbox"
+        )}
+      />
+    </label>
   );
 };
 

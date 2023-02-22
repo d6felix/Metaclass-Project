@@ -1,8 +1,8 @@
-import "./Loader.css";
+import "./Loader.scss";
 
 var classNames = require("classnames");
 
-enum LoaderSize {
+export enum LoaderSize {
   s = "s",
   m = "m",
   l = "l",
@@ -21,9 +21,7 @@ export const Loader: React.FC<LoaderProps> = ({
 }) => {
   if (loading) {
     return (
-      <div
-        className={classNames("loader", className, `loader_size-${size}`)}
-      ></div>
+      <div className={classNames("loader", className, `loader_size_${size}`)} />
     );
   } else {
     return null;

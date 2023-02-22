@@ -1,0 +1,44 @@
+.button {
+    color: #FFFFFF;
+    font-style: normal;
+    font-weight: 700;
+    font-size: 18px;
+    line-height: 130%;
+    text-align: center;
+    border: none;
+    padding: 16px 28px 16px 18px;
+    background: #518581;
+    display: flex;
+    flex-direction: row-reverse;
+    justify-content: space-evenly;
+    align-items: center;
+
+    &:first-child {
+        margin-left: 10px;
+        margin-right: 10px;
+    }
+
+    &:hover {
+        opacity: 0.7;
+    }
+
+    &.button_disabled,
+    &.button_loading {
+        opacity: 1.0;
+        background: #D9D9D9;
+    }
+
+    // only for test
+    &.button_loading {
+        position: relative;
+        left: -8px;
+    }
+
+    .button__loader {
+        width: 20px;
+        height: 20px;
+        border-color: #FFFFFF;
+        border-bottom-color: transparent;
+        margin-right: 18px;
+    }
+}
