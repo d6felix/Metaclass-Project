@@ -1,4 +1,4 @@
-.checkbox-container {
+.checkbox {
     display: block;
     position: static;
     cursor: pointer;
@@ -9,14 +9,14 @@
     user-select: none;
 }
 
-.checkbox-container__checkbox-original_hidden {
+.checkbox__original_hidden {
     position: absolute;
     appearance: none;
     -moz-appearance: none;
     -webkit-appearance: none;
 }
 
-.checkbox-container__checkbox-custom {
+.checkbox__custom {
     position: static;
     display: block;
     box-sizing: content-box;
@@ -38,21 +38,21 @@
     }
 }
 
-.checkbox-container__checkbox-original_hidden_disabled~.checkbox-container__checkbox-custom {
+.checkbox__original_hidden_disabled~.checkbox__custom {
     border: 0px;
     opacity: 0.7;
 }
 
 
-.checkbox-container__checkbox-original_hidden_disabled:checked~.checkbox-container__checkbox-custom {
+.checkbox__original_hidden_disabled:checked~.checkbox__custom {
     border: 1px solid rgba(0, 0, 0, 0);
 }
 
-.checkbox-container__checkbox-original_hidden:checked~.checkbox-container__checkbox-custom:after {
+.checkbox__original_hidden:checked~.checkbox__custom:after {
     display: block;
 }
 
-.checkbox-container__checkbox-custom:after {
+.checkbox__custom:after {
     left: 13px;
     top: 4px;
     width: 11.5px;

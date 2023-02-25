@@ -1,8 +1,6 @@
 import React from "react";
 
-import classNames from "classnames";
-
-import { Loader, LoaderSize } from "../Loader/Loader";
+import { Loader, LoaderSize } from "@components/Loader/Loader";
 
 export type WithLoaderProps = React.PropsWithChildren<{
   loading: boolean;
@@ -20,11 +18,7 @@ export const WithLoader: React.FC<WithLoaderProps> = ({
     <React.Fragment>
       {children}
       {loading && (
-        <Loader
-          loading={loading}
-          size={size}
-          className={classNames(className)}
-        />
+        <Loader loading={loading} size={size} className={className} />
       )}
     </React.Fragment>
   );

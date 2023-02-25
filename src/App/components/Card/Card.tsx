@@ -1,5 +1,6 @@
 import classNames from "classnames";
-import "./Card.scss";
+
+import styles from "./Card.module.scss";
 
 export type CardProps = {
   /** URL изображения */
@@ -22,11 +23,11 @@ export const Card: React.FC<CardProps> = ({
   onClick,
 }) => {
   return (
-    <div onClick={onClick} className={classNames("card")}>
-      <img className={classNames("card__image")} src={image} alt="card" />
-      <div className={classNames("card__title-container")}>
-        <div className={classNames("card__title")}>{title}</div>
-        <div className={classNames("card__subtitle")}>{subtitle}</div>
+    <div onClick={onClick} className={classNames(styles.card)}>
+      <img className={classNames(styles.card__image)} src={image} alt="card" />
+      <div className={classNames(styles.card__container)}>
+        <div className={classNames(styles.card__title)}>{title}</div>
+        <div className={classNames(styles.card__subtitle)}>{subtitle}</div>
         {content !== null && content}
       </div>
     </div>

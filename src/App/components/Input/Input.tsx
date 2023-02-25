@@ -1,6 +1,6 @@
 import classNames from "classnames";
-//import { useState } from "react";
-import "./Input.scss";
+
+import styles from "./Input.module.scss";
 
 export type InputProps = Omit<
   React.InputHTMLAttributes<HTMLInputElement>,
@@ -26,7 +26,11 @@ export const Input: React.FC<InputProps> = ({
       value={value}
       disabled={disabled}
       placeholder={placeholder}
-      className={classNames(className, "input", { input_disabled: disabled })}
+      className={classNames(
+        className,
+        styles.input,
+        disabled ? styles.input_disabled : ""
+      )}
       onChange={(e) => onChange(e.target.value)}
     ></input>
   );

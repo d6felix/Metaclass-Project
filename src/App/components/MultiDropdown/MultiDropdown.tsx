@@ -1,7 +1,8 @@
 import React from "react";
 
 import classNames from "classnames";
-import "./MultiDropdown.scss";
+
+import styles from "./MultiDropdown.module.scss";
 
 /** Вариант для выбора в фильтре */
 export type Option = {
@@ -37,9 +38,9 @@ export const MultiDropdown: React.FC<MultiDropdownProps> = ({
     return (
       <li
         className={classNames(
-          "multi-dropdown__item",
+          styles.multidropdown__item,
           value.findIndex((elem) => elem.key === item.key) !== -1
-            ? "multi-dropdown__item_selected"
+            ? styles.multidropdown__item_selected
             : ""
         )}
         key={item.key}
@@ -64,7 +65,7 @@ export const MultiDropdown: React.FC<MultiDropdownProps> = ({
     <>
       <button
         {...props}
-        className={classNames("multi-dropdown")}
+        className={classNames(styles.multidropdown)}
         disabled={disabled}
         onClick={() => {
           setVisible(!visible);
@@ -73,7 +74,7 @@ export const MultiDropdown: React.FC<MultiDropdownProps> = ({
         <p>{pluralizeOptions(value)}</p>
       </button>
       {!disabled && visible && (
-        <ul className={classNames("multi-dropdown__itembox")}>
+        <ul className={classNames(styles.multidropdown__itembox)}>
           {listOfOptions}
         </ul>
       )}

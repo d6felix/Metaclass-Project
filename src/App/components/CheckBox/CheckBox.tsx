@@ -1,7 +1,8 @@
 import { useState } from "react";
 
 import classNames from "classnames";
-import "./CheckBox.scss";
+
+import styles from "./CheckBox.module.scss";
 
 export type CheckBoxProps = Omit<
   React.InputHTMLAttributes<HTMLInputElement>,
@@ -21,7 +22,7 @@ export const CheckBox: React.FC<CheckBoxProps> = ({
   [checked, setChecked] = useState(checked);
 
   return (
-    <label className={classNames("checkbox-container")}>
+    <label className={classNames(styles.checkbox)}>
       <input
         {...props}
         checked={checked}
@@ -31,16 +32,12 @@ export const CheckBox: React.FC<CheckBoxProps> = ({
           onChange(e.target.checked);
           setChecked(e.target.checked);
         }}
-        className={classNames("checkbox-container__checkbox-original_hidden", {
-          "checkbox-container__checkbox-original_hidden_disabled": disabled,
-        })}
-      />
-      <div
         className={classNames(
-          "checkbox-container__checkbox-custom",
-          "checkbox"
+          styles.checkbox__original_hidden,
+          disabled ? styles.checkbox__original_hidden_disabled : ""
         )}
       />
+      <div className={classNames(styles.checkbox__custom)} />
     </label>
   );
 };

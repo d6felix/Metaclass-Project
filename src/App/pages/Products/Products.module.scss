@@ -1,0 +1,15 @@
+.container {
+    display: flex;
+    flex-wrap: wrap;
+    margin: auto;
+    justify-content: space-around;
+    gap: 30px;
+}
+
+.item {
+    width: auto;
+    height: auto;
+    max-height: 544px;
+    max-width: 360px;
+    padding: 20px;
+}

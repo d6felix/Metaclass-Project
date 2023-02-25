@@ -1,8 +1,8 @@
+import { LoaderSize } from "@components/Loader/Loader";
+import WithLoader from "@components/WithLoader";
 import classNames from "classnames";
 
-import { LoaderSize } from "../Loader/Loader";
-import WithLoader from "../WithLoader";
-import "./Button.scss";
+import styles from "./Button.module.scss";
 
 export type ButtonProps = React.PropsWithChildren<{
   loading?: boolean;
@@ -21,16 +21,16 @@ export const Button: React.FC<ButtonProps> = ({
       {...props}
       disabled={loading || disabled}
       className={classNames(
-        "button",
+        styles.button,
         className,
-        { button_disabled: disabled || loading },
-        { button_loading: loading }
+        disabled || loading ? styles.button_disabled : false,
+        loading ? styles.button_loading : false
       )}
     >
       <WithLoader
         loading={loading}
         size={LoaderSize.s}
-        className={classNames("button__loader")}
+        className={classNames(styles.button__loader)}
       >
         <div>{children}</div>
       </WithLoader>

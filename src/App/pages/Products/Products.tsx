@@ -3,9 +3,10 @@ import { useEffect, useState } from "react";
 import { Card } from "@components/Card/Card";
 import { Item } from "@components/Item/Item";
 import axios from "axios";
+import classNames from "classnames";
 import { Link } from "react-router-dom";
 
-import "./Products.css";
+import styles from "./Products.module.scss";
 
 export const Products = () => {
   const [itemsData, setItemsData] = useState<Item[]>([]);
@@ -20,15 +21,17 @@ export const Products = () => {
   }, []);
 
   return (
-    <div className="container">
+    <div className={classNames(styles.container)}>
       {itemsData.map((item: Item) => {
         return (
-          <div className="item" key={item.id}>
-            <Link to={`/product/${item.id}`}>
-              <Card image={item.image} title={item.title} subtitle={""} />
-            </Link>
-            <div className="price">{item.price} $</div>
-          </div>
+          <Link to={`/product/${item.id}`}>
+            <Card
+              image={item.image}
+              title={item.title}
+              subtitle={""}
+              content={"$ " + item.price}
+            />
+          </Link>
         );
       })}
     </div>

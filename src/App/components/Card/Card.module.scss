@@ -1,13 +1,9 @@
 .card {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
     padding: 0px;
     gap: 26px;
 
-    position: absolute;
-    width: 360px;
-    height: 544px;
+    max-width: 360px;
+    max-height: 544px;
 
     font-style: "Eudoxus Sans";
     font-weight: 700;
@@ -23,10 +19,7 @@
         flex-grow: 0;
     }
 
-    .card_title-container {
-        display: flex;
-        flex-direction: column;
-        align-items: flex-start;
+    .card_container {
         padding: 0px;
         gap: 18px;
 
