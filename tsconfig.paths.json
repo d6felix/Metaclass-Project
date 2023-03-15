@@ -16,6 +16,9 @@
       ],
       "@App": [
         "src/App/App"
+      ],
+      "@pages/*": [
+        "src/App/pages/*"
       ]
     }
   }
