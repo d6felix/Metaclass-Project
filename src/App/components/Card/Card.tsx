@@ -28,7 +28,9 @@ export const Card: React.FC<CardProps> = ({
       <div className={classNames(styles.card__container)}>
         <div className={classNames(styles.card__title)}>{title}</div>
         <div className={classNames(styles.card__subtitle)}>{subtitle}</div>
-        {content !== null && content}
+        {content !== null && (
+          <div className={classNames(styles.card__content)}>{content}</div>
+        )}
       </div>
     </div>
   );

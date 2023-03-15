@@ -24,7 +24,7 @@ export const Products = () => {
     <div className={classNames(styles.container)}>
       {itemsData.map((item: Item) => {
         return (
-          <Link to={`/product/${item.id}`}>
+          <Link className={classNames(styles.item)} to={`/product/${item.id}`}>
             <Card
               image={item.image}
               title={item.title}

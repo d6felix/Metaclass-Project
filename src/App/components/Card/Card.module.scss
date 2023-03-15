@@ -5,12 +5,14 @@
     max-width: 360px;
     max-height: 544px;
 
+    text-decoration-line: none;
+    text-decoration: none;
     font-style: "Eudoxus Sans";
     font-weight: 700;
     font-size: 26px;
     line-height: 34px;
 
-    .card__image {
+    &__image {
         width: 350px;
         height: 350px;
 
@@ -19,7 +21,7 @@
         flex-grow: 0;
     }
 
-    .card_container {
+    &_container {
         padding: 0px;
         gap: 18px;
 
@@ -27,7 +29,7 @@
         height: 121px;
     }
 
-    .card__title {
+    &__title {
         width: 346px;
         height: 34px;
 
@@ -44,11 +46,12 @@
         flex-grow: 0;
     }
 
-    .card__subtitle {
+    &__subtitle {
         width: 346px;
         height: 32px;
 
         margin-top: -12px;
+
         font-family: 'Eudoxus Sans';
         font-style: normal;
         font-weight: 500;
@@ -60,5 +63,15 @@
         flex: none;
         order: 1;
         flex-grow: 0;
+    }
+
+    &__content {
+        font-family: 'Eudoxus Sans';
+        font-style: normal;
+        font-weight: 700;
+        font-size: 26px;
+        line-height: 34px;
+
+        color: #151411;
     }
 }
