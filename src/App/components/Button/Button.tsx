@@ -6,13 +6,16 @@ import styles from "./Button.module.scss";
 
 export type ButtonProps = React.PropsWithChildren<{
   loading?: boolean;
+  children: React.ReactNode;
+  disabled?: boolean;
+  classname?: string;
 }> &
   React.ButtonHTMLAttributes<HTMLButtonElement>;
 
 export const Button: React.FC<ButtonProps> = ({
   children,
   loading = false,
-  className,
+  className = "",
   disabled = false,
   ...props
 }) => {
