@@ -42,12 +42,14 @@ export default class ItemStore implements ILocalStore {
     return this._meta;
   }
 
-  async getItemData() {
+  async getItemData(pageNumber: number) {
     this._meta = Meta.loading;
     this._list = [];
 
-    await axios
-      .get(BASE_URL)
+    await axios({
+      method: "get",
+      url: BASE_URL + `?offset=${(pageNumber - 1) * 20}&limit=${20}`,
+    })
       .then((response) => {
         runInAction(() => {
           this._meta = Meta.success;

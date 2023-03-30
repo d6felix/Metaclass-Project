@@ -15,17 +15,17 @@ const Main = () => {
 
 export const App = () => {
   return (
-    <div>
-      <Routes>
-        <Route path="/" element={<Main />}>
-          <Route path="products" element={<Products />} />
-          <Route path="product">
-            <Route path=":id" element={<Product />} />
-          </Route>
-          <Route path="*" element={<Navigate to="/" replace />} />
+    <Routes>
+      <Route path="/" element={<Main />}>
+        <Route path="products" element={<Products />}>
+          <Route path="page/:page" element={<Products />} />
         </Route>
-      </Routes>
-    </div>
+        <Route path="product">
+          <Route path=":id" element={<Product />} />
+        </Route>
+        <Route path="*" element={<Navigate to="/" replace />} />
+      </Route>
+    </Routes>
   );
 };
 
