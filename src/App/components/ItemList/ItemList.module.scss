@@ -1,0 +1,11 @@
+.container {
+    display: flex;
+    flex-wrap: wrap;
+    margin: auto;
+    justify-content: space-around;
+    gap: 30px;
+}
+
+.item {
+    text-decoration-line: none;
+}

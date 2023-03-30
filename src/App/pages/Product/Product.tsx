@@ -13,12 +13,14 @@ export const Product = () => {
     id: 0,
     title: "",
     price: 0,
-    image: "",
+    images: [],
   });
 
   useEffect(() => {
     const fetch = async (id: string) => {
-      const result = await axios.get(`https://fakestoreapi.com/products/${id}`);
+      const result = await axios.get(
+        `https://api.escuelajs.co/api/v1/products/${id}`
+      );
       setItemData(result.data);
     };
 
@@ -28,7 +30,7 @@ export const Product = () => {
   return (
     <div>
       <Card
-        image={itemData.image}
+        image={itemData.images[0]}
         title={itemData.title}
         subtitle={""}
         content={"$ " + itemData.price}
