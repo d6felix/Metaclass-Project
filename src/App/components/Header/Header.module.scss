@@ -27,6 +27,9 @@
 
     &__link {
         text-decoration: none;
+    }
+
+    &__text {
         color: $text-color;
         font-weight: 500;
         font-size: 18px;
@@ -35,39 +38,26 @@
         margin-left: 30px;
         margin-right: 30px;
 
-        &::after {
-            content: "";
-            position: absolute;
-
-            visibility: hidden;
-            top: 120px;
-            background-color: $choice-accent;
-            height: 2px;
-            width: 80px;
-        }
-
-        &_first:after {
-            left: 41.4%;
-            transform: translateX(-50%);
-        }
-
-        &_second:after {
-            left: 50%;
-            transform: translateX(-50%);
-        }
-
-        &_third:after {
-            left: 58.7%;
-            transform: translateX(-50%);
-        }
-
         &:hover {
             color: $choice-accent;
 
-            &::after {
+            &~.header__line {
                 visibility: visible;
             }
         }
+    }
+
+    &__line {
+        content: "";
+        position: relative;
+
+        visibility: hidden;
+        top: 27px;
+        background-color: $choice-accent;
+        height: 2px;
+        width: 60%;
+        left: 50%;
+        transform: translateX(-50%);
     }
 
     &__cart {
