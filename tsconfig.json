@@ -2,9 +2,12 @@
   "extends": "./tsconfig.paths.json",
   "compilerOptions": {
     "target": "es5",
+    "downlevelIteration": true,
+    "importHelpers": true,
     "lib": [
       "dom",
       "dom.iterable",
+      "es5",
       "esnext"
     ],
     "allowJs": true,
