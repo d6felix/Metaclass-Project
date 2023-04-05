@@ -1,42 +1,42 @@
 import { useEffect } from "react";
 
-import Button from "@components/Button";
 import ItemList from "@components/ItemList";
+import PageNavigation from "@components/PageNavigation";
 import Search from "@components/Search";
 import Title from "@components/Title";
 import ItemStore from "@store/ItemStore";
+import pageNumberConstrain from "@utils/pageNumberConstrain";
 import { useLocalStore } from "@utils/useLocalStore";
-import classNames from "classnames";
+//import classNames from "classnames";
 import { observer } from "mobx-react-lite";
-import { Link, useParams } from "react-router-dom";
+import { useParams, useSearchParams } from "react-router-dom";
 
-import styles from "./Products.module.scss";
+//import styles from "./Products.module.scss";
 
 type PageParams = {
   page: string;
 };
 
-function constrain(pageNumber: number): number {
-  return pageNumber > 10 ? 10 : pageNumber < 1 ? 1 : pageNumber;
-}
-
 export const Products: React.FC = () => {
   const { page } = useParams<PageParams>();
+  const [search] = useSearchParams();
   let pageNumber = 1;
 
-  if (page !== undefined) {
+  if (typeof page === "string") {
     pageNumber = Number.parseInt(page);
   }
 
-  pageNumber = constrain(pageNumber);
+  pageNumber = pageNumberConstrain(pageNumber);
 
   const itemStore = useLocalStore(() => new ItemStore());
 
-  console.log(pageNumber, useParams<PageParams>());
-
   useEffect(() => {
     itemStore.getItemData(pageNumber);
-  }, [itemStore, pageNumber]);
+  }, [itemStore, pageNumber, search]);
+
+  useEffect(() => {
+    itemStore.getItemCount();
+  }, [itemStore, search]);
 
   return (
     <>
@@ -46,14 +46,11 @@ export const Products: React.FC = () => {
           "We display products based on the latest products we have, if you want to see our old products please enter the name of the item."
         }
       />
-      <Search />
-      <Link to={`/products/page/${constrain(pageNumber - 1)}`}>
-        <Button children={"Previous Page"} />
-      </Link>
-      <Link to={`/products/page/${constrain(pageNumber + 1)}`}>
-        <Button children={"Next Page"} />
-      </Link>
+      <Search itemStore={itemStore} />
+      <h2>Total Product</h2>
+      <div>{itemStore.count}</div>
       <ItemList itemsData={itemStore.list} />
+      <PageNavigation currentPage={pageNumber} totalCount={itemStore.count} />
     </>
   );
 };

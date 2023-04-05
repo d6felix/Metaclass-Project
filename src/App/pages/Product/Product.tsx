@@ -5,7 +5,7 @@ import { Item } from "@components/Item/Item";
 import axios from "axios";
 import { useParams } from "react-router-dom";
 
-import styles from "./Product.module.scss";
+//import styles from "./Product.module.scss";
 
 export const Product = () => {
   const { id = "0" } = useParams();

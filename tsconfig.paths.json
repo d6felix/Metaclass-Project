@@ -17,6 +17,9 @@
       "@store/*": [
         "src/store/*"
       ],
+      "@hook/*": [
+        "src/hook/*"
+      ],
       "@App": [
         "src/App/App"
       ],
