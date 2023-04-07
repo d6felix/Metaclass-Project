@@ -1,4 +1,5 @@
 import { Item } from "@components/Item/Item";
+import rootStore from "@store/RootStore/instance";
 import { ILocalStore } from "@utils/useLocalStore";
 import axios from "axios";
 import {
@@ -18,7 +19,7 @@ export enum Meta {
   success = "success", // Завершилось успешно
 }
 
-type PrivateFields = "_list" | "_meta" | "_query";
+type PrivateFields = "_list" | "_meta";
 export default class ItemStore implements ILocalStore {
   // private readonly _apiStore = new ApiStore(BASE_URL);
   private _list: Item[] = [];
@@ -29,24 +30,10 @@ export default class ItemStore implements ILocalStore {
     makeObservable<ItemStore, PrivateFields>(this, {
       _list: observable.ref,
       _meta: observable,
-      _query: observable,
       list: computed,
       meta: computed,
-      query: computed,
       getItemData: action,
     });
-  }
-
-  set query(query: string) {
-    if (this._query === "") {
-      this._query = query;
-    } else {
-      this._query += "&" + query;
-    }
-  }
-
-  get query(): string {
-    return this._query;
   }
 
   get list(): Item[] {
@@ -60,13 +47,23 @@ export default class ItemStore implements ILocalStore {
   async getItemData(pageNumber: number) {
     this._meta = Meta.loading;
     this._list = [];
+    let newQuery = rootStore.query.getParam("title")
+      ? "title=" + rootStore.query.getParam("title")
+      : "";
+
+    if (newQuery !== this._query) {
+      this._query = newQuery;
+      pageNumber = 1;
+    }
+
+    const url =
+      BASE_URL +
+      `?offset=${(pageNumber - 1) * 20}&limit=${20}` +
+      (this._query !== "" ? "&" + this._query : "");
 
     await axios({
       method: "get",
-      url:
-        BASE_URL +
-        `?offset=${(pageNumber - 1) * 20}&limit=${20}` +
-        (this._query !== "" ? "&" + this._query : ""),
+      url: url,
     })
       .then((response) => {
         runInAction(() => {

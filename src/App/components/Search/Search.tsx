@@ -2,11 +2,10 @@ import React, { useState } from "react";
 
 import Button from "@components/Button/Button";
 import Input from "@components/Input/Input";
-//import MultiDropdown from "@components/MultiDropdown/MultiDropdown";
 import ItemStore from "@store/ItemStore/ItemStore";
 import rootStore from "@store/RootStore/instance";
 import classNames from "classnames";
-import { useSearchParams } from "react-router-dom";
+import { useNavigate, useSearchParams } from "react-router-dom";
 
 import styles from "./Search.module.scss";
 
@@ -15,9 +14,10 @@ type SearchProps = {
 };
 
 export const Search: React.FC<SearchProps> = ({ itemStore }) => {
-  let [search, setSearch] = useState<string>("");
+  const [search, setSearch] = useState<string>("");
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  let [_, setSearchParams] = useSearchParams();
+  const [_, setSearchParams] = useSearchParams();
+  const navigate = useNavigate();
 
   const handleTitle = (title: string) => {
     setSearch(title);
@@ -25,10 +25,12 @@ export const Search: React.FC<SearchProps> = ({ itemStore }) => {
 
   const handleSubmit = (event: any) => {
     event.preventDefault();
-    setSearchParams("title=" + search);
-    rootStore.query.setSearch("title=" + search);
+    const query: string = "title=" + search;
+    setSearchParams(query);
+    rootStore.query.setSearch(query);
+    navigate("/products" + (search !== "" ? "?" + query : ""));
   };
-
+  // change to browser router
   return (
     <div className={classNames(styles.search)}>
       <form onSubmit={handleSubmit}>
@@ -43,9 +45,6 @@ export const Search: React.FC<SearchProps> = ({ itemStore }) => {
           Find Now
         </Button>
       </form>
-      {
-        // <MultiDropdown options={} pluralizeOptions={() => {}} />
-      }
     </div>
   );
 };

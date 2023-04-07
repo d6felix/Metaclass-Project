@@ -16,16 +16,18 @@ export enum Meta {
   success = "success", // Завершилось успешно
 }
 
-type PrivateFields = "_meta" | "_count";
+type PrivateFields = "_meta" | "_count" | "_query";
 export default class ItemCountStore {
   // private readonly _apiStore = new ApiStore(BASE_URL);
   private _meta: Meta = Meta.initial;
   private _count: number = 0;
+  private _query: string = "";
 
   constructor() {
     makeObservable<ItemCountStore, PrivateFields>(this, {
       _meta: observable,
       _count: observable,
+      _query: observable,
       meta: computed,
       count: computed,
       getItemCount: action,
@@ -40,13 +42,14 @@ export default class ItemCountStore {
     return this._count;
   }
 
-  async getItemCount() {
+  async getItemCount(query: string = "") {
     this._meta = Meta.loading;
     this._count = 0;
+    this._query = query ? "?title=" + query : "";
 
     await axios({
       method: "get",
-      url: BASE_URL,
+      url: BASE_URL + this._query,
     })
       .then((response) => {
         runInAction(() => {

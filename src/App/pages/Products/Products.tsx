@@ -42,7 +42,7 @@ export const Products: React.FC = () => {
   }, [itemStore, pageNumber, query]);
 
   useEffect(() => {
-    rootStore.count.getItemCount();
+    rootStore.count.getItemCount(query);
   }, [query]);
 
   return (
