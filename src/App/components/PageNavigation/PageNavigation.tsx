@@ -1,6 +1,6 @@
 import { usePagination, DOTS } from "@hook/usePagination";
 import pageNumberConstrain from "@utils/pageNumberConstrain";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 
 export type PageNavigationProps = {
   currentPage: number;
@@ -22,6 +22,8 @@ export const PageNavigation: React.FC<PageNavigationProps> = ({
     currentPage,
   });
 
+  let { search } = useLocation();
+
   let pageLinks = paginationRange.map((pageNumber, index) => {
     if (pageNumber === DOTS) {
       return <div key={index}>{"..."}</div>;
@@ -30,7 +32,7 @@ export const PageNavigation: React.FC<PageNavigationProps> = ({
     return (
       <Link
         key={index}
-        to={`/products/page/${pageNumberConstrain(pageNumber)}`}
+        to={`/products/page/${pageNumberConstrain(pageNumber)}${search}`}
       >
         <div>{pageNumber}</div>
       </Link>
@@ -39,11 +41,15 @@ export const PageNavigation: React.FC<PageNavigationProps> = ({
 
   return (
     <>
-      <Link to={`/products/page/${pageNumberConstrain(currentPage - 1)}`}>
+      <Link
+        to={`/products/page/${pageNumberConstrain(currentPage - 1)}${search}`}
+      >
         <div>{"<"}</div>
       </Link>{" "}
       {pageLinks}{" "}
-      <Link to={`/products/page/${pageNumberConstrain(currentPage + 1)}`}>
+      <Link
+        to={`/products/page/${pageNumberConstrain(currentPage + 1)}${search}`}
+      >
         <div>{">"}</div>
       </Link>
     </>

@@ -1,5 +1,3 @@
-import { Item } from "@components/Item/Item";
-import { ILocalStore } from "@utils/useLocalStore";
 import axios from "axios";
 import {
   makeObservable,
@@ -18,60 +16,42 @@ export enum Meta {
   success = "success", // Завершилось успешно
 }
 
-type PrivateFields = "_list" | "_meta" | "_query";
-export default class ItemStore implements ILocalStore {
+type PrivateFields = "_meta" | "_count";
+export default class ItemCountStore {
   // private readonly _apiStore = new ApiStore(BASE_URL);
-  private _list: Item[] = [];
   private _meta: Meta = Meta.initial;
-  private _query: string = "";
+  private _count: number = 0;
 
   constructor() {
-    makeObservable<ItemStore, PrivateFields>(this, {
-      _list: observable.ref,
+    makeObservable<ItemCountStore, PrivateFields>(this, {
       _meta: observable,
-      _query: observable,
-      list: computed,
+      _count: observable,
       meta: computed,
-      query: computed,
-      getItemData: action,
+      count: computed,
+      getItemCount: action,
     });
-  }
-
-  set query(query: string) {
-    if (this._query === "") {
-      this._query = query;
-    } else {
-      this._query += "&" + query;
-    }
-  }
-
-  get query(): string {
-    return this._query;
-  }
-
-  get list(): Item[] {
-    return this._list;
   }
 
   get meta(): Meta {
     return this._meta;
   }
 
-  async getItemData(pageNumber: number) {
+  get count(): number {
+    return this._count;
+  }
+
+  async getItemCount() {
     this._meta = Meta.loading;
-    this._list = [];
+    this._count = 0;
 
     await axios({
       method: "get",
-      url:
-        BASE_URL +
-        `?offset=${(pageNumber - 1) * 20}&limit=${20}` +
-        (this._query !== "" ? "&" + this._query : ""),
+      url: BASE_URL,
     })
       .then((response) => {
         runInAction(() => {
           this._meta = Meta.success;
-          this._list = response.data;
+          this._count = response.data.length;
         });
       })
       .catch((error) =>
@@ -80,6 +60,4 @@ export default class ItemStore implements ILocalStore {
         })
       );
   }
-
-  destroy(): void {}
 }

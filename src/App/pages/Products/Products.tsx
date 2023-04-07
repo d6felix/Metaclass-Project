@@ -5,11 +5,13 @@ import PageNavigation from "@components/PageNavigation";
 import Search from "@components/Search";
 import Title from "@components/Title";
 import ItemStore from "@store/ItemStore";
+import rootStore from "@store/RootStore";
 import pageNumberConstrain from "@utils/pageNumberConstrain";
 import { useLocalStore } from "@utils/useLocalStore";
 //import classNames from "classnames";
+import { runInAction } from "mobx";
 import { observer } from "mobx-react-lite";
-import { useParams, useSearchParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
 
 //import styles from "./Products.module.scss";
 
@@ -19,7 +21,12 @@ type PageParams = {
 
 export const Products: React.FC = () => {
   const { page } = useParams<PageParams>();
-  const [search] = useSearchParams();
+
+  let query: any = "";
+  runInAction(() => {
+    query = rootStore.query.getParam("title");
+  });
+
   let pageNumber = 1;
 
   if (typeof page === "string") {
@@ -32,11 +39,11 @@ export const Products: React.FC = () => {
 
   useEffect(() => {
     itemStore.getItemData(pageNumber);
-  }, [itemStore, pageNumber, search]);
+  }, [itemStore, pageNumber, query]);
 
   useEffect(() => {
-    itemStore.getItemCount();
-  }, [itemStore, search]);
+    rootStore.count.getItemCount();
+  }, [query]);
 
   return (
     <>
@@ -48,9 +55,12 @@ export const Products: React.FC = () => {
       />
       <Search itemStore={itemStore} />
       <h2>Total Product</h2>
-      <div>{itemStore.count}</div>
+      <div>{rootStore.count.count}</div>
       <ItemList itemsData={itemStore.list} />
-      <PageNavigation currentPage={pageNumber} totalCount={itemStore.count} />
+      <PageNavigation
+        currentPage={pageNumber}
+        totalCount={rootStore.count.count}
+      />
     </>
   );
 };
