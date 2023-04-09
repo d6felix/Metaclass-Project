@@ -51,7 +51,7 @@ export const PageNavigation: React.FC<PaginationParams> = ({
   return (
     <div className={classNames(styles.navigation)}>
       <Link
-        className={classNames(styles.navigation)}
+        className={classNames(styles.navigation__link)}
         to={`/products/page/${
           currentPage === 1 ? currentPage : currentPage - 1
         }${search}`}
@@ -66,7 +66,7 @@ export const PageNavigation: React.FC<PaginationParams> = ({
       </Link>{" "}
       {pageLinks}{" "}
       <Link
-        className={classNames(styles.navigation)}
+        className={classNames(styles.navigation__link)}
         to={`/products/page/${
           currentPage === paginationRange.at(-1) ? currentPage : currentPage + 1
         }${search}`}
