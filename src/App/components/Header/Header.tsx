@@ -9,7 +9,7 @@ import { ReactComponent as UserIcon } from "./UserIcon.svg";
 export const Header = () => (
   <header className={classNames(styles.header)}>
     <StoreNameIcon className={classNames(styles.header__icon)} />
-    <Link className={classNames(styles.header__link)} to="/products">
+    <Link className={classNames(styles.header__link)} to="/products/page/1">
       <p className={classNames(styles.header__text)}>Products</p>
       <div className={classNames(styles.header__line)} />
     </Link>
