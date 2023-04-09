@@ -1,15 +1,24 @@
 .search {
-    display: flex;
-    justify-content: center;
-    align-items: center;
     margin-top: 20px;
     margin-bottom: 20px;
     width: 100%;
 
+    &__form {
+
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+    }
 
     &__input {
         border: none;
+        max-width: 1024px;
+        width: 100%;
     }
 
-    &__button {}
+    &__button {
+        position: relative;
+        right: 150px;
+    }
 }

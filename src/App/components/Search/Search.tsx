@@ -34,7 +34,7 @@ export const Search: React.FC<SearchProps> = ({ itemStore }) => {
   // change to browser router
   return (
     <div className={classNames(styles.search)}>
-      <form onSubmit={handleSubmit}>
+      <form onSubmit={handleSubmit} className={classNames(styles.search__form)}>
         <Input
           onChange={handleTitle}
           value={search}
