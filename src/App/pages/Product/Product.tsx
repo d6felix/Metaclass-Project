@@ -12,6 +12,7 @@ export const Product = () => {
   const [itemData, setItemData] = useState<Item>({
     id: 0,
     title: "",
+    description: "",
     price: 0,
     images: [],
   });
@@ -30,7 +31,7 @@ export const Product = () => {
       <Card
         image={itemData.images[0]}
         title={itemData.title}
-        subtitle={""}
+        subtitle={itemData.description}
         content={"$ " + itemData.price}
       ></Card>
     </div>
