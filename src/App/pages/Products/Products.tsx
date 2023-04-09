@@ -6,7 +6,6 @@ import Search from "@components/Search";
 import Title from "@components/Title";
 import ItemStore from "@store/ItemStore";
 import rootStore from "@store/RootStore";
-import pageNumberConstrain from "@utils/pageNumberConstrain";
 import { useLocalStore } from "@utils/useLocalStore";
 //import classNames from "classnames";
 import { runInAction } from "mobx";
@@ -21,7 +20,6 @@ type PageParams = {
 
 export const Products: React.FC = () => {
   const { page } = useParams<PageParams>();
-
   let query: any = "";
   runInAction(() => {
     query = rootStore.query.getParam("title");
@@ -33,16 +31,20 @@ export const Products: React.FC = () => {
     pageNumber = Number.parseInt(page);
   }
 
-  pageNumber = pageNumberConstrain(pageNumber);
-
   const itemStore = useLocalStore(() => new ItemStore());
 
-  useEffect(() => {
-    itemStore.getItemData(pageNumber);
-  }, [itemStore, pageNumber, query]);
+  rootStore.page.setCurrentPage(pageNumber);
 
   useEffect(() => {
-    rootStore.count.getItemCount(query);
+    rootStore.page.setCurrentPage(pageNumber);
+  }, [pageNumber]);
+
+  useEffect(() => {
+    itemStore.getItemData();
+  }, [itemStore, pageNumber]);
+
+  useEffect(() => {
+    rootStore.count.fetchItemCount(query);
   }, [query]);
 
   return (
@@ -60,6 +62,8 @@ export const Products: React.FC = () => {
       <PageNavigation
         currentPage={pageNumber}
         totalCount={rootStore.count.count}
+        pageSize={rootStore.page.pageSize}
+        siblingCount={rootStore.page.siblingCount}
       />
     </>
   );

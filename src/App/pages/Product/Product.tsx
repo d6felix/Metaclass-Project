@@ -18,9 +18,7 @@ export const Product = () => {
 
   useEffect(() => {
     const fetch = async (id: string) => {
-      const result = await axios.get(
-        `https://api.escuelajs.co/api/v1/products/${id}`
-      );
+      const result = await axios.get(`https://dummyjson.com/products/${id}`);
       setItemData(result.data);
     };
 

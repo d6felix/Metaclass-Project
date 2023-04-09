@@ -1,20 +1,15 @@
-import { usePagination, DOTS } from "@hook/usePagination";
-import pageNumberConstrain from "@utils/pageNumberConstrain";
+import { usePagination, DOTS, PaginationParams } from "@hook/usePagination";
+import classNames from "classnames";
 import { Link, useLocation } from "react-router-dom";
 
-export type PageNavigationProps = {
-  currentPage: number;
-  totalCount: number;
-  siblingCount?: number;
-  pageSize?: number;
-};
+import styles from "./PageNavigation.module.scss";
 
-export const PageNavigation: React.FC<PageNavigationProps> = ({
-  currentPage,
+export const PageNavigation: React.FC<PaginationParams> = ({
   totalCount,
-  siblingCount = 1,
-  pageSize = 20,
-}) => {
+  pageSize,
+  siblingCount,
+  currentPage,
+}: PaginationParams) => {
   const paginationRange = usePagination({
     totalCount,
     pageSize,
@@ -26,33 +21,67 @@ export const PageNavigation: React.FC<PageNavigationProps> = ({
 
   let pageLinks = paginationRange.map((pageNumber, index) => {
     if (pageNumber === DOTS) {
-      return <div key={index}>{"..."}</div>;
+      return (
+        <div key={index} className={classNames(styles.navigation__dots)}>
+          {"..."}
+        </div>
+      );
     }
 
     return (
       <Link
+        className={classNames(styles.navigation__link)}
         key={index}
-        to={`/products/page/${pageNumberConstrain(pageNumber)}${search}`}
+        to={`/products/page/${pageNumber}${search}`}
       >
-        <div>{pageNumber}</div>
+        <div
+          className={classNames(
+            styles.navigation__pagelink,
+            currentPage === pageNumber
+              ? styles.navigation__pagelink_selected
+              : false
+          )}
+        >
+          {pageNumber}
+        </div>
       </Link>
     );
   });
 
   return (
-    <>
+    <div className={classNames(styles.navigation)}>
       <Link
-        to={`/products/page/${pageNumberConstrain(currentPage - 1)}${search}`}
+        className={classNames(styles.navigation)}
+        to={`/products/page/${
+          currentPage === 1 ? currentPage : currentPage - 1
+        }${search}`}
       >
-        <div>{"<"}</div>
+        <div
+          className={classNames(
+            styles.navigation__arrow,
+            styles.navigation__arrow_left,
+            currentPage === 1 ? styles.navigation__arrow_disabled : ""
+          )}
+        ></div>
       </Link>{" "}
       {pageLinks}{" "}
       <Link
-        to={`/products/page/${pageNumberConstrain(currentPage + 1)}${search}`}
+        className={classNames(styles.navigation)}
+        to={`/products/page/${
+          currentPage === paginationRange.at(-1) ? currentPage : currentPage + 1
+        }${search}`}
       >
-        <div>{">"}</div>
+        <div
+          className={classNames(
+            styles.navigation__arrow,
+            styles.navigation__arrow_right,
+            currentPage === paginationRange.at(-1)
+              ? styles.navigation__arrow_disabled
+              : ""
+          )}
+        ></div>
       </Link>
-    </>
+    </div>
   );
 };
 

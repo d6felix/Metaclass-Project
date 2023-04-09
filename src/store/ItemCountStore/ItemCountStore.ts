@@ -7,7 +7,7 @@ import {
   runInAction,
 } from "mobx";
 
-const BASE_URL = "https://api.escuelajs.co/api/v1/products";
+const BASE_URL = "https://dummyjson.com/products/";
 
 export enum Meta {
   initial = "initial", // Процесс не начат
@@ -30,7 +30,7 @@ export default class ItemCountStore {
       _query: observable,
       meta: computed,
       count: computed,
-      getItemCount: action,
+      fetchItemCount: action,
     });
   }
 
@@ -42,10 +42,9 @@ export default class ItemCountStore {
     return this._count;
   }
 
-  async getItemCount(query: string = "") {
+  async fetchItemCount(query: string = "") {
     this._meta = Meta.loading;
-    this._count = 0;
-    this._query = query ? "?title=" + query : "";
+    //this._query = query ? "search?q=" + query : "";
 
     await axios({
       method: "get",
@@ -54,12 +53,13 @@ export default class ItemCountStore {
       .then((response) => {
         runInAction(() => {
           this._meta = Meta.success;
-          this._count = response.data.length;
+          this._count = response.data.total;
         });
       })
       .catch((error) =>
         runInAction(() => {
           this._meta = Meta.error;
+          this._count = 0;
         })
       );
   }

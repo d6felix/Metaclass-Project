@@ -10,7 +10,7 @@ import {
   runInAction,
 } from "mobx";
 
-const BASE_URL = "https://api.escuelajs.co/api/v1/products";
+const BASE_URL = "https://dummyjson.com/products/";
 
 export enum Meta {
   initial = "initial", // Процесс не начат
@@ -44,22 +44,22 @@ export default class ItemStore implements ILocalStore {
     return this._meta;
   }
 
-  async getItemData(pageNumber: number) {
+  async getItemData() {
     this._meta = Meta.loading;
-    this._list = [];
+    let pageNumber = rootStore.page.currentPage;
+    const limit = rootStore.page.pageSize;
+
     let newQuery = rootStore.query.getParam("title")
-      ? "title=" + rootStore.query.getParam("title")
+      ? "q=" + rootStore.query.getParam("title")
       : "";
 
     if (newQuery !== this._query) {
       this._query = newQuery;
       pageNumber = 1;
+      runInAction(() => rootStore.page.setCurrentPage(pageNumber));
     }
 
-    const url =
-      BASE_URL +
-      `?offset=${(pageNumber - 1) * 20}&limit=${20}` +
-      (this._query !== "" ? "&" + this._query : "");
+    const url = BASE_URL + `?skip=${(pageNumber - 1) * limit}&limit=${limit}`;
 
     await axios({
       method: "get",
@@ -68,7 +68,7 @@ export default class ItemStore implements ILocalStore {
       .then((response) => {
         runInAction(() => {
           this._meta = Meta.success;
-          this._list = response.data;
+          this._list = Array.from(response.data.products);
         });
       })
       .catch((error) =>

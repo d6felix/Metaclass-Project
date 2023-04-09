@@ -1,23 +1,23 @@
 import { useMemo } from "react";
 
-type usePaginationParameters = {
+type DOTS_TYPE = "...";
+type paginationRange = DOTS_TYPE | number;
+
+export const DOTS: DOTS_TYPE = "...";
+
+export type PaginationParams = {
   totalCount: number;
   pageSize: number;
   siblingCount: number;
   currentPage: number;
 };
 
-type DOTS_TYPE = "...";
-type paginationRange = DOTS_TYPE | number;
-
-export const DOTS: DOTS_TYPE = "...";
-
 export const usePagination = ({
   totalCount,
   pageSize,
-  siblingCount = 1,
+  siblingCount,
   currentPage,
-}: usePaginationParameters): paginationRange[] => {
+}: PaginationParams): paginationRange[] => {
   const paginationRange: paginationRange[] = useMemo(() => {
     const totalPageCount = Math.ceil(totalCount / pageSize);
 
@@ -62,7 +62,7 @@ export const usePagination = ({
     }
 
     throw new Error("Error in calculation.");
-  }, [totalCount, pageSize, siblingCount, currentPage]);
+  }, [pageSize, siblingCount, currentPage, totalCount]);
 
   return paginationRange;
 };
