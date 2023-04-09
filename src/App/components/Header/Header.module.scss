@@ -5,7 +5,6 @@
     $background-color: #FFFFFF;
 
     display: flex;
-    flex-wrap: nowrap;
     margin: 0px;
     justify-content: center;
     align-items: center;
@@ -64,7 +63,7 @@
         position: absolute;
         width: 30px;
         height: 30px;
-        left: 1256px;
+        right: 154px;
         top: 45px;
     }
 
@@ -73,7 +72,7 @@
         position: absolute;
         width: 30px;
         height: 30px;
-        left: 1310px;
+        right: 100px;
         top: 45px;
     }
 }
