@@ -28,6 +28,7 @@ export const Search: React.FC<SearchProps> = ({ itemStore }) => {
     const query: string = "title=" + search;
     setSearchParams(query);
     rootStore.query.setSearch(query);
+    itemStore.getItemData();
     navigate("/products" + (search !== "" ? "?" + query : ""));
   };
   // change to browser router

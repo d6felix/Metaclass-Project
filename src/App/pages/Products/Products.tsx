@@ -33,15 +33,13 @@ export const Products: React.FC = () => {
 
   const itemStore = useLocalStore(() => new ItemStore());
 
-  rootStore.page.setCurrentPage(pageNumber);
-
   useEffect(() => {
     rootStore.page.setCurrentPage(pageNumber);
   }, [pageNumber]);
 
   useEffect(() => {
     itemStore.getItemData();
-  }, [itemStore, pageNumber]);
+  }, [itemStore, pageNumber, query]);
 
   useEffect(() => {
     rootStore.count.fetchItemCount(query);

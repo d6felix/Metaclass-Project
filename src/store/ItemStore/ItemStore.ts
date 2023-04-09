@@ -49,9 +49,10 @@ export default class ItemStore implements ILocalStore {
     let pageNumber = rootStore.page.currentPage;
     const limit = rootStore.page.pageSize;
 
-    let newQuery = rootStore.query.getParam("title")
-      ? "q=" + rootStore.query.getParam("title")
-      : "";
+    let newQuery =
+      rootStore.query.getParam("title") !== undefined
+        ? rootStore.query.getParam("title")
+        : "";
 
     if (newQuery !== this._query) {
       this._query = newQuery;
@@ -59,7 +60,13 @@ export default class ItemStore implements ILocalStore {
       runInAction(() => rootStore.page.setCurrentPage(pageNumber));
     }
 
-    const url = BASE_URL + `?skip=${(pageNumber - 1) * limit}&limit=${limit}`;
+    const url =
+      BASE_URL +
+      (this._query === ""
+        ? `?skip=${(pageNumber - 1) * limit}&limit=${limit}`
+        : `search?skip=${(pageNumber - 1) * limit}&limit=${limit}&q=${
+            this._query
+          }`);
 
     await axios({
       method: "get",

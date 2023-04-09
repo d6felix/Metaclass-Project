@@ -44,7 +44,7 @@ export default class ItemCountStore {
 
   async fetchItemCount(query: string = "") {
     this._meta = Meta.loading;
-    //this._query = query ? "search?q=" + query : "";
+    this._query = query ? "search?q=" + query : "";
 
     await axios({
       method: "get",
