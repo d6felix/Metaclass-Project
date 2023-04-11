@@ -26,7 +26,7 @@ export const App = () => {
         <Route path="product">
           <Route path=":id" element={<Product />} />
         </Route>
-        <Route path="*" element={<Navigate to="/" replace />} />
+        <Route path="*" element={<Navigate to="/products" replace />} />
       </Route>
     </Routes>
   );
