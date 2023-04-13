@@ -14,9 +14,6 @@
     border-bottom: 2px solid $border-color;
     background-color: $background-color;
 
-    font-family: 'Eudoxus Sans';
-    font-style: normal;
-
     &__icon {
         position: absolute;
         height: 42px;
@@ -30,7 +27,6 @@
 
     &__text {
         color: $text-color;
-        font-weight: 500;
         font-size: 18px;
         line-height: 180%;
 
@@ -68,7 +64,6 @@
     }
 
     &__user {
-
         position: absolute;
         width: 30px;
         height: 30px;
