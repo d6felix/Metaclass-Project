@@ -7,12 +7,12 @@ import Title from "@components/Title";
 import ItemStore from "@store/ItemStore";
 import rootStore from "@store/RootStore";
 import { useLocalStore } from "@utils/useLocalStore";
-//import classNames from "classnames";
+import classNames from "classnames";
 import { runInAction } from "mobx";
 import { observer } from "mobx-react-lite";
 import { useParams } from "react-router-dom";
 
-//import styles from "./Products.module.scss";
+import styles from "./Products.module.scss";
 
 type PageParams = {
   page: string;
@@ -54,8 +54,12 @@ export const Products: React.FC = () => {
         }
       />
       <Search itemStore={itemStore} />
-      <h2>Total Product</h2>
-      <div>{rootStore.count.count}</div>
+      <div className={classNames(styles.count)}>
+        <h2 className={classNames(styles.count__title)}>Total Product</h2>
+        <div className={classNames(styles.count__number)}>
+          {rootStore.count.count}
+        </div>
+      </div>
       <ItemList itemsData={itemStore.list} />
       <PageNavigation
         currentPage={pageNumber}

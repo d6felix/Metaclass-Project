@@ -1,0 +1,27 @@
+.count {
+    display: flex;
+    align-items: center;
+    justify-items: center;
+
+    &__title {
+        font-size: 44px;
+        line-height: 57px;
+        color: #151411;
+    }
+
+    &__number {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        padding: 10px 16px;
+        gap: 10px;
+        width: 60px;
+        height: 30px;
+        background: #F9F9F9;
+        border-radius: 20px;
+        font-size: 16px;
+        line-height: 21px;
+        color: #518581;
+    }
+}
