@@ -9,20 +9,24 @@ import { ReactComponent as UserIcon } from "./UserIcon.svg";
 export const Header = () => (
   <header className={classNames(styles.header)}>
     <StoreNameIcon className={classNames(styles.header__icon)} />
-    <Link className={classNames(styles.header__link)} to="/products/page/1">
-      <p className={classNames(styles.header__text)}>Products</p>
-      <div className={classNames(styles.header__line)} />
-    </Link>
-    <Link className={classNames(styles.header__link)} to="/products">
-      <p className={classNames(styles.header__text)}>Categories</p>
-      <div className={classNames(styles.header__line)} />
-    </Link>
-    <Link className={classNames(styles.header__link)} to="/products">
-      <p className={classNames(styles.header__text)}>About Us</p>
-      <div className={classNames(styles.header__line)} />
-    </Link>
-    <BagIcon className={classNames(styles.header__cart)} />
-    <UserIcon className={classNames(styles.header__user)} />
+    <span className={classNames(styles.header__container_link)}>
+      <Link className={classNames(styles.header__link)} to="/products/page/1">
+        <p className={classNames(styles.header__text)}>Products</p>
+        <div className={classNames(styles.header__line)} />
+      </Link>
+      <Link className={classNames(styles.header__link)} to="/products">
+        <p className={classNames(styles.header__text)}>Categories</p>
+        <div className={classNames(styles.header__line)} />
+      </Link>
+      <Link className={classNames(styles.header__link)} to="/products">
+        <p className={classNames(styles.header__text)}>About Us</p>
+        <div className={classNames(styles.header__line)} />
+      </Link>
+    </span>
+    <div className={classNames(styles.header__container_icons)}>
+      <BagIcon className={classNames(styles.header__cart)} />
+      <UserIcon className={classNames(styles.header__user)} />
+    </div>
   </header>
 );
 
