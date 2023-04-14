@@ -30,10 +30,14 @@
 
     &__subtitle {
         width: 346px;
+        height: 32px;
         margin-top: -12px;
         font-size: 18px;
         line-height: 30px;
         color: colors.$grey;
+        overflow: hidden;
+        white-space: nowrap;
+        text-overflow: ellipsis;
     }
 
     &__content {
