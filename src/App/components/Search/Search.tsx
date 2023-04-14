@@ -26,7 +26,7 @@ export const Search: React.FC<SearchProps> = ({ itemStore, category }) => {
     setSearch(title);
   };
 
-  const handleSubmit = (event: any) => {
+  const handleSubmit = (event: React.FormEvent<HTMLFormElement>): void => {
     event.preventDefault();
     const query: string = "title=" + search;
     setSearchParams(query);

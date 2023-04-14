@@ -44,7 +44,7 @@ export default class ItemStore implements ILocalStore {
     return this._meta;
   }
 
-  async getItemData() {
+  async getItemData(): Promise<void> {
     this._meta = Meta.loading;
     let pageNumber = rootStore.page.currentPage;
     const limit = rootStore.page.pageSize;
@@ -55,7 +55,7 @@ export default class ItemStore implements ILocalStore {
         : "";
 
     if (newQuery !== this._query) {
-      this._query = newQuery;
+      this._query = newQuery as string;
       pageNumber = 1;
       runInAction(() => rootStore.page.setCurrentPage(pageNumber));
     }

@@ -20,9 +20,9 @@ type PageParams = {
 
 export const Products: React.FC = () => {
   const { page } = useParams<PageParams>();
-  let query: any = "";
+  let query: string = "";
   runInAction(() => {
-    query = rootStore.query.getParam("title");
+    query = rootStore.query.getParam("title") as string;
   });
 
   let pageNumber = 1;
