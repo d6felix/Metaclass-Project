@@ -1,3 +1,5 @@
+@use "../../../../src/utils/colors";
+
 .search {
     margin-top: 20px;
     margin-bottom: 20px;
@@ -6,20 +8,31 @@
     &__form {
         display: flex;
         flex-direction: row;
-        justify-content: right;
+        justify-content: center;
         align-items: center;
+        margin: auto;
+        max-width: 1144px;
+        width: 100%;
+        border: 1px solid colors.$white;
+    }
+
+    form:focus-within {
+        border-color: colors.$green;
     }
 
     &__input {
-        position: relative;
-        right: 10%;
+        flex-grow: 10;
         border: none;
         max-width: 1024px;
         width: 100%;
+
+        &:focus {
+            border: none;
+        }
     }
 
+
     &__button {
-        position: relative;
-        right: 20%;
+        flex: none;
     }
 }
