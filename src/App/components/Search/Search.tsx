@@ -31,7 +31,7 @@ export const Search: React.FC<SearchProps> = ({ itemStore }) => {
     itemStore.getItemData();
     navigate("/products" + (search !== "" ? "?" + query : ""));
   };
-  // change to browser router
+
   return (
     <div className={classNames(styles.search)}>
       <form onSubmit={handleSubmit} className={classNames(styles.search__form)}>
