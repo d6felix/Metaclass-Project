@@ -1,18 +1,15 @@
+@use "../../../../src/utils/colors";
+
 .header {
-    $border-color: #F3F3F3;
-    $choice-accent: #518581;
-    $text-color: #151411;
-    $background-color: #FFFFFF;
 
     display: flex;
-    margin: 0px;
     justify-content: center;
     align-items: center;
 
     position: sticky;
     height: 120px;
-    border-bottom: 2px solid $border-color;
-    background-color: $background-color;
+    border-bottom: 2px solid colors.$white-grey;
+    background-color: colors.$white;
 
     &__icon {
         position: absolute;
@@ -26,7 +23,7 @@
     }
 
     &__text {
-        color: $text-color;
+        color: colors.$black;
         font-size: 18px;
         line-height: 180%;
 
@@ -34,7 +31,7 @@
         margin-right: 30px;
 
         &:hover {
-            color: $choice-accent;
+            color: colors.$green;
 
             &~.header__line {
                 visibility: visible;
@@ -48,7 +45,7 @@
         box-sizing: content-box;
         visibility: hidden;
         top: 42px;
-        background-color: $choice-accent;
+        background-color: colors.$green;
         height: 2px;
         width: 60%;
         left: 50%;

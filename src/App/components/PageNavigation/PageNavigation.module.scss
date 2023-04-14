@@ -1,3 +1,5 @@
+@use "../../../../src/utils/colors";
+
 .navigation {
     display: flex;
     flex-direction: row;
@@ -28,13 +30,13 @@
         display: flex;
         justify-content: center;
         color: #151411;
-        border: 1.5px solid #F9F9F9;
-        background-color: #FFFFFF;
+        border: 1.5px solid colors.$white-grey;
+        background-color: colors.$white;
 
         &_selected {
             border: none;
-            background-color: #518581;
-            color: #FFFFFF;
+            background-color: colors.$green;
+            color: colors.$white;
         }
     }
 
@@ -44,8 +46,8 @@
         top: 12px;
         width: 15px;
         height: 15px;
-        border-left: 1.5px solid #151411;
-        border-bottom: 1.5px solid #151411;
+        border-left: 1.5px solid colors.$black;
+        border-bottom: 1.5px solid colors.$black;
         border-bottom-left-radius: 20%;
 
         &_left {
@@ -57,7 +59,7 @@
         }
 
         &_disabled {
-            border-color: #AFADB5;
+            border-color: colors.$grey;
         }
     }
 }

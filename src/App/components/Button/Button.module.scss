@@ -1,11 +1,13 @@
+@use "../../../../src/utils/colors";
+
 .button {
-    color: #FFFFFF;
+    color: colors.$white;
     font-size: 18px;
     line-height: 24px;
     text-align: center;
     border: none;
     padding: 16px 28px 16px 18px;
-    background: #518581;
+    background: colors.$green;
     display: flex;
     flex-direction: row-reverse;
     justify-content: space-evenly;
@@ -23,7 +25,7 @@
     &.button_disabled,
     &.button_loading {
         opacity: 1.0;
-        background: #D9D9D9;
+        background: colors.$light-grey;
     }
 
     // only for test
@@ -35,7 +37,7 @@
     .button__loader {
         width: 20px;
         height: 20px;
-        border-color: #FFFFFF;
+        border-color: colors.$white;
         border-bottom-color: transparent;
         margin-right: 18px;
     }

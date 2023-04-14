@@ -1,3 +1,5 @@
+@use "../../../../src/utils/colors";
+
 .count {
     display: flex;
     align-items: center;
@@ -6,7 +8,7 @@
     &__title {
         font-size: 44px;
         line-height: 57px;
-        color: #151411;
+        color: colors.$black;
     }
 
     &__number {
@@ -18,10 +20,10 @@
         gap: 10px;
         width: 60px;
         height: 30px;
-        background: #F9F9F9;
+        background: colors.$white-grey;
         border-radius: 20px;
         font-size: 16px;
         line-height: 21px;
-        color: #518581;
+        color: colors.$green;
     }
 }

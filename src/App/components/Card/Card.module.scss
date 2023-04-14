@@ -1,7 +1,7 @@
-.card {
-    padding: 0px;
-    gap: 26px;
+@use "../../../../src/utils/colors";
 
+.card {
+    gap: 26px;
     max-width: 360px;
 
     text-decoration-line: none;
@@ -17,9 +17,7 @@
     }
 
     &__container {
-        padding: 0px;
         gap: 18px;
-
         width: 346px;
         display: flex;
         flex-direction: column;
@@ -27,25 +25,20 @@
 
     &__title {
         width: 346px;
-
-        color: #151411;
+        color: colors.$black;
     }
 
     &__subtitle {
         width: 346px;
-
         margin-top: -12px;
-
         font-size: 18px;
         line-height: 30px;
-
-        color: #AFADB5;
+        color: colors.$grey;
     }
 
     &__content {
         margin-top: -12px;
         margin-bottom: auto;
-
-        color: #151411;
+        color: colors.$black;
     }
 }

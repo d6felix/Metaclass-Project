@@ -1,5 +1,7 @@
+@use "../../../../src/utils/colors";
+
 .loader {
-    border: solid #518581;
+    border: solid colors.$green;
     border-bottom-color: transparent;
     border-radius: 50%;
     display: block;

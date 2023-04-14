@@ -1,3 +1,5 @@
+@use "../../../../src/utils/colors";
+
 .checkbox {
     display: block;
     position: static;
@@ -23,12 +25,12 @@
     overflow: hidden;
     height: 40px;
     width: 40px;
-    background-color: #FFFFFF;
+    background-color: colors.$white;
     border-radius: 0%;
-    box-shadow: 0px 4px 120px 0px #AFADB5;
+    box-shadow: 0px 4px 120px 0px colors.$grey;
 
     &:hover {
-        border: 1px solid #518581;
+        border: 1px solid colors.$green;
     }
 
     &:after {
@@ -57,7 +59,7 @@
     top: 4px;
     width: 11.5px;
     height: 19.5px;
-    border: solid #518581;
+    border: solid colors.$green;
     border-width: 0 3px 3px 0;
     -webkit-transform: rotate(45deg);
     -ms-transform: rotate(45deg);
