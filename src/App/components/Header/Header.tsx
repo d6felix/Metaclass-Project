@@ -10,11 +10,11 @@ export const Header = () => (
   <header className={classNames(styles.header)}>
     <StoreNameIcon className={classNames(styles.header__icon)} />
     <span className={classNames(styles.header__container_link)}>
-      <Link className={classNames(styles.header__link)} to="/products/page/1">
+      <Link className={classNames(styles.header__link)} to="/products">
         <p className={classNames(styles.header__text)}>Products</p>
         <div className={classNames(styles.header__line)} />
       </Link>
-      <Link className={classNames(styles.header__link)} to="/products">
+      <Link className={classNames(styles.header__link)} to="/categories">
         <p className={classNames(styles.header__text)}>Categories</p>
         <div className={classNames(styles.header__line)} />
       </Link>
