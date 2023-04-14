@@ -1,5 +1,5 @@
 import Card from "@components/Card";
-import { Item } from "@components/Item/Item";
+import { Item } from "@utils/types";
 import classNames from "classnames";
 import { Link } from "react-router-dom";
 

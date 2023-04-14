@@ -7,7 +7,7 @@ import Categories from "./pages/Categories";
 import Product from "./pages/Product";
 import Products from "./pages/Products";
 
-const Main = () => {
+const Main: React.FC = () => {
   return (
     <>
       <Header />
@@ -16,7 +16,7 @@ const Main = () => {
   );
 };
 
-export const App = () => {
+export const App: React.FC = () => {
   useQueryParamsStoreInit();
   return (
     <Routes>

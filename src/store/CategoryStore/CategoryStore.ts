@@ -1,4 +1,6 @@
-import axios from "axios";
+import { BASE_URL } from "@utils/constants";
+import { Meta } from "@utils/types";
+import axios, { AxiosResponse } from "axios";
 import {
   action,
   computed,
@@ -6,15 +8,6 @@ import {
   observable,
   runInAction,
 } from "mobx";
-
-export enum Meta {
-  initial = "initial", // Процесс не начат
-  loading = "loading", // В процессе загрузки
-  error = "error", // Завершилось с ошибкой
-  success = "success", // Завершилось успешно
-}
-
-const BASE_URL = "https://dummyjson.com/products/categories";
 
 type privateFields = "_category" | "_meta" | "_selected";
 export default class CategoryStore {
@@ -34,38 +27,38 @@ export default class CategoryStore {
     });
   }
 
-  get meta() {
+  get meta(): Meta {
     return this._meta;
   }
 
-  get category() {
+  get category(): string[] {
     return this._category;
   }
 
-  get selected() {
+  get selected(): string[] {
     return this._selected;
   }
 
-  setSelected(categories: string[]) {
+  setSelected(categories: string[]): void {
     this._selected = categories;
   }
 
-  async initCategory() {
+  async initCategory(): Promise<void> {
     this._meta = Meta.loading;
     this._category = [];
 
     await axios({
       method: "get",
-      url: BASE_URL,
+      url: BASE_URL + "categories",
     })
-      .then((response) => {
-        runInAction(() => {
+      .then((response: AxiosResponse<string[]>): void => {
+        runInAction((): void => {
           this._meta = Meta.success;
           this._category = response.data;
         });
       })
-      .catch((error) =>
-        runInAction(() => {
+      .catch((): void =>
+        runInAction((): void => {
           this._meta = Meta.error;
           this._category = [];
         })

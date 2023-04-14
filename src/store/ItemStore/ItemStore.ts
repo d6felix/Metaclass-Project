@@ -1,5 +1,6 @@
-import { Item } from "@components/Item/Item";
 import rootStore from "@store/RootStore/instance";
+import { BASE_URL } from "@utils/constants";
+import { Item, Meta } from "@utils/types";
 import { ILocalStore } from "@utils/useLocalStore";
 import axios from "axios";
 import {
@@ -9,15 +10,6 @@ import {
   action,
   runInAction,
 } from "mobx";
-
-const BASE_URL = "https://dummyjson.com/products/";
-
-export enum Meta {
-  initial = "initial", // Процесс не начат
-  loading = "loading", // В процессе загрузки
-  error = "error", // Завершилось с ошибкой
-  success = "success", // Завершилось успешно
-}
 
 type PrivateFields = "_list" | "_meta";
 export default class ItemStore implements ILocalStore {

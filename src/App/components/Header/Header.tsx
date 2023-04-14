@@ -6,7 +6,7 @@ import styles from "./Header.module.scss";
 import { ReactComponent as StoreNameIcon } from "./StoreNameIcon.svg";
 import { ReactComponent as UserIcon } from "./UserIcon.svg";
 
-export const Header = () => (
+export const Header: React.FC = () => (
   <header className={classNames(styles.header)}>
     <StoreNameIcon className={classNames(styles.header__icon)} />
     <span className={classNames(styles.header__container_link)}>

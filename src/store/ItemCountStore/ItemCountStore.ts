@@ -1,3 +1,5 @@
+import { BASE_URL } from "@utils/constants";
+import { Meta } from "@utils/types";
 import axios from "axios";
 import {
   makeObservable,
@@ -6,15 +8,6 @@ import {
   action,
   runInAction,
 } from "mobx";
-
-const BASE_URL = "https://dummyjson.com/products/";
-
-export enum Meta {
-  initial = "initial", // Процесс не начат
-  loading = "loading", // В процессе загрузки
-  error = "error", // Завершилось с ошибкой
-  success = "success", // Завершилось успешно
-}
 
 type PrivateFields = "_meta" | "_count" | "_query";
 export default class ItemCountStore {

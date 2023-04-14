@@ -1,16 +1,11 @@
 import { useMemo } from "react";
 
+import { PaginationParams } from "@utils/types";
+
 type DOTS_TYPE = "...";
 type paginationRange = DOTS_TYPE | number;
 
 export const DOTS: DOTS_TYPE = "...";
-
-export type PaginationParams = {
-  totalCount: number;
-  pageSize: number;
-  siblingCount: number;
-  currentPage: number;
-};
 
 export const usePagination = ({
   totalCount,
@@ -61,14 +56,14 @@ export const usePagination = ({
       return [firstPageIndex, DOTS, ...middleRange, DOTS, lastPageIndex];
     }
 
-    throw new Error("Error in calculation.");
+    throw new Error("Error in parameters.");
   }, [pageSize, siblingCount, currentPage, totalCount]);
 
   return paginationRange;
 };
 
 const range = (start: number, end: number): number[] => {
-  const length = end - start + 1;
+  const length: number = end - start + 1;
 
   return Array.from({ length }, (_, index) => index + start);
 };

@@ -1,4 +1,5 @@
-import { usePagination, DOTS, PaginationParams } from "@hook/usePagination";
+import { usePagination, DOTS } from "@hook/usePagination";
+import { PaginationParams } from "@utils/types";
 import classNames from "classnames";
 import { Link, useLocation } from "react-router-dom";
 
