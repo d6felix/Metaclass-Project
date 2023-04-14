@@ -23,6 +23,13 @@
         flex-direction: column;
     }
 
+    &__category {
+        height: 23px;
+        font-size: 18px;
+        line-height: 23px;
+        color: colors.$grey;
+    }
+
     &__title {
         width: 346px;
         color: colors.$black;

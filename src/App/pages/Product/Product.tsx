@@ -11,6 +11,7 @@ export const Product = () => {
   const { id = "0" } = useParams();
   const [itemData, setItemData] = useState<Item>({
     id: 0,
+    category: "",
     title: "",
     description: "",
     price: 0,
@@ -29,6 +30,7 @@ export const Product = () => {
   return (
     <div>
       <Card
+        category={itemData.category}
         image={itemData.images[0]}
         title={itemData.title}
         subtitle={itemData.description}

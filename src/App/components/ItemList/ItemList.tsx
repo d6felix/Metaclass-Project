@@ -26,6 +26,7 @@ export const ItemList: React.FC<ItemListProps> = ({
           >
             <Card
               image={item.images[0]}
+              category={item.category}
               title={item.title}
               subtitle={item.description}
               content={"$ " + item.price}
