@@ -9,7 +9,7 @@ export type PaginationParams = {
 type PrivateFields = "_pageSize" | "_siblingCount" | "_currentPage";
 
 export default class PaginationParamsStore {
-  private _pageSize: number = 8;
+  private _pageSize: number = 9;
   private _siblingCount: number = 1;
   private _currentPage: number = 1;
 

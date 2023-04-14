@@ -5,6 +5,9 @@
     align-items: center;
     justify-items: center;
 
+    margin: 10px 0px 10px min(100px, 10%);
+
+
     &__title {
         font-size: 44px;
         line-height: 57px;
