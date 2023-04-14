@@ -4,25 +4,17 @@ import classNames from "classnames";
 
 import styles from "./MultiDropdown.module.scss";
 
-/** Вариант для выбора в фильтре */
 export type Option = {
-  /** Ключ варианта, используется для отправки на бек/использования в коде */
   key: string;
-  /** Значение варианта, отображается пользователю */
   value: string;
 };
 
-/** Пропсы, которые принимает компонент Dropdown */
 export type MultiDropdownProps = {
-  /** Массив возможных вариантов для выбора */
   options: Option[];
-  /** Текущие выбранные значения поля, массив может быть пустым */
   value: Option[];
-  /** Callback, вызываемый при выборе варианта */
   onChange: (value: Option[]) => void;
-  /** Заблокирован ли дропдаун */
   disabled?: boolean;
-  /** Преобразовать выбранные значения в строку. Отображается в дропдауне в качестве выбранного значения */
+  className?: string;
   pluralizeOptions: (value: Option[]) => string;
 };
 
@@ -31,6 +23,7 @@ export const MultiDropdown: React.FC<MultiDropdownProps> = ({
   value = [],
   onChange,
   disabled = false,
+  className,
   pluralizeOptions,
   ...props
 }) => {
@@ -65,7 +58,7 @@ export const MultiDropdown: React.FC<MultiDropdownProps> = ({
     <>
       <button
         {...props}
-        className={classNames(styles.multidropdown)}
+        className={classNames(styles.multidropdown, className)}
         disabled={disabled}
         onClick={() => {
           setVisible(!visible);

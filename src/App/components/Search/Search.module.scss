@@ -11,15 +11,28 @@
         flex-direction: row;
         justify-content: center;
         align-items: center;
+        flex-wrap: nowrap;
+    }
+
+    &__wrapper {
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+        flex-wrap: nowrap;
         margin: auto;
         max-width: 1144px;
         width: 100%;
         border: 1px solid colors.$white;
         padding-right: 10px;
+
+        &:focus-within {
+            border-color: colors.$green;
+        }
     }
 
-    form:focus-within {
-        border-color: colors.$green;
+    &__dropdown {
+        width: 100px;
     }
 
     &__input {

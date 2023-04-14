@@ -53,14 +53,17 @@ export const Products: React.FC = () => {
           "We display products based on the latest products we have, if you want to see our old products please enter the name of the item."
         }
       />
-      <Search itemStore={itemStore} />
+      <Search itemStore={itemStore} category={rootStore.category.category} />
       <div className={classNames(styles.count)}>
         <h2 className={classNames(styles.count__title)}>Total Product</h2>
         <div className={classNames(styles.count__number)}>
           {rootStore.count.count}
         </div>
       </div>
-      <ItemList itemsData={itemStore.list} />
+      <ItemList
+        itemsData={itemStore.list}
+        category_filter={rootStore.category.selected}
+      />
       <PageNavigation
         currentPage={pageNumber}
         totalCount={rootStore.count.count}
