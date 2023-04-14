@@ -6,7 +6,7 @@
 - Разбивка данных и логики на MobX сторы
 
 ## Демонстрация
-https://d6felix.github.io/products/
+https://d6felix.github.io/Metaclass-Project/
 В проекте реализованы пагинация, query параметры, pathing с помощью BrowserRouter, реактивность при помощи MobX сторов, фильрация по категориям.
 Сборка происходит с помощью CRA. Проект написан на Typescript.
 
