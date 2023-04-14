@@ -65,7 +65,7 @@ export const Search: React.FC<SearchProps> = ({ itemStore, category }) => {
             return setValue(value);
           }}
           pluralizeOptions={(value: Option[]) => {
-            return value.length.toString();
+            return "Categoies chosen: " + value.length.toString();
           }}
         />
       </form>

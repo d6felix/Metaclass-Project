@@ -55,23 +55,26 @@ export const MultiDropdown: React.FC<MultiDropdownProps> = ({
   const [visible, setVisible] = React.useState(false);
 
   return (
-    <>
+    <div className={classNames(styles.multidropdown)}>
       <button
+        type="button"
         {...props}
-        className={classNames(styles.multidropdown, className)}
+        className={classNames(styles.multidropdown__button, className)}
         disabled={disabled}
         onClick={() => {
           setVisible(!visible);
         }}
       >
-        <p>{pluralizeOptions(value)}</p>
+        <p className={classNames(styles.multidropdown__chosen)}>
+          {pluralizeOptions(value)}
+        </p>
       </button>
       {!disabled && visible && (
         <ul className={classNames(styles.multidropdown__itembox)}>
           {listOfOptions}
         </ul>
       )}
-    </>
+    </div>
   );
 };
 
