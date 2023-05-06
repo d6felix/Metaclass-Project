@@ -12,7 +12,7 @@
     border-bottom: 2px solid colors.$white-grey;
     background-color: colors.$white;
 
-    &__icon {
+    &__logo {
         height: 42px;
         flex: none;
     }
@@ -28,7 +28,8 @@
 
         &_icons {
             max-width: 150px;
-            width: 100%;
+            gap: 1vw;
+            width: min-content;
             display: flex;
             flex-direction: row;
             justify-content: space-evenly;
@@ -46,8 +47,8 @@
         font-size: 18px;
         line-height: 180%;
 
-        margin-left: 30px;
-        margin-right: 30px;
+        margin-left: 2vw;
+        margin-right: 2vw;
 
         &:hover {
             color: colors.$green;
@@ -71,13 +72,35 @@
         transform: translateX(-50%);
     }
 
-    &__cart {
+    &__icon {
         width: 30px;
         height: 30px;
-    }
 
-    &__user {
-        width: 30px;
-        height: 30px;
+        &_menu {
+            display: none;
+        }
+    }
+}
+
+@media screen and (max-width: 500px) {
+    .header {
+        height: 75px;
+        justify-content: space-between;
+        padding: 0px 5vw;
+
+        &__container_link {
+            display: none;
+        }
+
+        &__icon {
+            &_menu {
+                display: inline-block;
+            }
+
+            &_user,
+            &_cart {
+                display: none;
+            }
+        }
     }
 }
