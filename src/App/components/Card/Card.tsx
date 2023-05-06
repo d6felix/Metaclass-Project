@@ -3,7 +3,6 @@ import classNames from "classnames";
 import styles from "./Card.module.scss";
 
 export type CardProps = {
-  /** URL изображения */
   image: string;
   category: React.ReactNode;
   title: React.ReactNode;
