@@ -5,7 +5,7 @@
     align-items: center;
     justify-items: center;
 
-    margin: 10px 0 10px min(135px, 10%);
+    margin: 10px 0 10px 5vw;
 
 
     &__title {
@@ -16,7 +16,6 @@
 
     &__number {
         display: flex;
-        justify-content: center;
         align-items: center;
 
         padding: 10px 16px;

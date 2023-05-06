@@ -1,4 +1,5 @@
 @use "../../../../src/utils/colors";
+@use "../../../../src/utils/adaptive";
 
 .header {
     display: flex;
@@ -82,7 +83,7 @@
     }
 }
 
-@media screen and (max-width: 500px) {
+@media screen and (max-width: adaptive.$width-breakpoint) {
     .header {
         height: 75px;
         justify-content: space-between;

@@ -1,12 +1,20 @@
+@use "../../../../src/utils/adaptive";
+
 .container {
     display: flex;
     flex-wrap: wrap;
-    margin: auto 100px;
+    margin: auto 5vw;
     justify-content: space-around;
     gap: 30px;
-
 }
 
 .item {
     text-decoration-line: none;
+}
+
+@media screen and (max-width: adaptive.$width-breakpoint) {
+    .container {
+        gap: 15px;
+        margin: auto 3vw;
+    }
 }
