@@ -3,9 +3,10 @@ import { useState, useEffect } from "react";
 import Card from "@components/Card/Card";
 import { Item } from "@utils/types";
 import axios from "axios";
+import classNames from "classnames";
 import { useParams } from "react-router-dom";
 
-//import styles from "./Product.module.scss";
+import styles from "./Product.module.scss";
 
 export const Product = () => {
   const { id = "0" } = useParams();
@@ -28,7 +29,7 @@ export const Product = () => {
   }, [id]);
 
   return (
-    <div>
+    <div className={classNames(styles.product__flex_container)}>
       <Card
         category={itemData.category}
         image={itemData.images[0]}
