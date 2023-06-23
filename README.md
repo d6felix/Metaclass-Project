@@ -6,7 +6,7 @@
 - Разбивка данных и логики на MobX сторы
 
 ## Демонстрация
-metaclass-project.vercel.app
+https://metaclass-project.vercel.app
 В проекте реализованы пагинация, query параметры, pathing с помощью BrowserRouter, реактивность при помощи MobX сторов, фильрация по категориям.
 Сборка происходит с помощью CRA. Проект написан на Typescript.
 
